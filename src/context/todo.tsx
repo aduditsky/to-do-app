@@ -22,15 +22,17 @@ interface TodoContextType {
   setFilter: (filter: string) => void;
 }
 
-const TodoContext = createContext<TodoContextType | undefined>(undefined);
+const TodoContext = createContext<TodoContextType>({
+  todos: [],
+  addTodo: () => {},
+  toggleTodo: () => {},
+  removeTodo: () => {},
+  clearCompleted: () => {},
+  setFilter: () => {},
+  filter: 'all',
+});
 
-export const useTodoContext = () => {
-  const context = useContext(TodoContext);
-  if (!context) {
-    throw new Error();
-  }
-  return context;
-};
+export const useTodoContext = (): TodoContextType => useContext(TodoContext);
 
 export const TodoProvider = ({ children }: { children: ReactNode }) => {
   const [todos, setTodos] = useState<Todo[]>([]);

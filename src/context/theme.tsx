@@ -9,15 +9,12 @@ interface ThemeProp {
   theme: string;
 }
 
-const ThemeContext = createContext<ThemeProp | undefined>(undefined);
+const ThemeContext = createContext<ThemeProp>({
+  theme: 'light',
+  toggleTheme: () => {},
+});
 
-export const useThemeContext = (): ThemeProp => {
-  const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error('useThemeContext must be used within a ThemeProvider');
-  }
-  return context;
-};
+export const useThemeContext = (): ThemeProp => useContext(ThemeContext);
 
 interface ThemeProviderProps {
   children: ReactNode;
