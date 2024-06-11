@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
 import TodoComponent from '@/components/todo';
 import ContextProvider from '@/context/wrapper';
@@ -75,17 +75,33 @@ describe('TodoContext', () => {
     expect(screen.queryByText('Test Todo')).not.toBeInTheDocument();
   });
 
-  it('sets the filter', () => {
+  it('sets the filter', async () => {
     render(
       <ContextProvider>
         <TodoComponent />
       </ContextProvider>
     );
 
-    const toggleTodo = screen.getAllByText('Test Todo');
-    toggleTodo.forEach((btn) => fireEvent.click(btn));
+    await waitFor(() => {
+      fireEvent.change(screen.getByPlaceholderText('Add a new todo'), {
+        target: { value: 'Test Todo' },
+      });
+      fireEvent.click(screen.getByText('Add'));
 
-    fireEvent.click(screen.getByText('Active'));
-    expect(screen.getByText('Test Todo')).not.toBeInTheDocument();
+      fireEvent.change(screen.getByPlaceholderText('Add a new todo'), {
+        target: { value: 'Hidden Todo' },
+      });
+      fireEvent.click(screen.getByText('Add'));
+
+      const toggleTodo = screen.getAllByText('Hidden Todo');
+      toggleTodo.forEach((btn) => fireEvent.click(btn));
+    });
+
+    await waitFor(() => {
+      fireEvent.click(screen.getByText('Active'));
+    });
+    await waitFor(() => {
+      expect(screen.queryByText('Hidden Todo')).not.toBeInTheDocument();
+    });
   });
 });
