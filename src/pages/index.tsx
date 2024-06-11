@@ -1,11 +1,7 @@
 import Head from 'next/head';
-// import Image from 'next/image';
 
 // Components
 import ThemeButton from '@/components/buttons/Theme';
-import { Container, Title } from '@/styles/pages';
-import TodoInput from '@/components/todo/input';
-import TodoList from '@/components/todo/list';
 import TodoComponent from '@/components/todo';
 
 export default function Home() {
