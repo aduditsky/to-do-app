@@ -27,8 +27,8 @@ export default function TodoList() {
       ))}
       <Footer>
         <TodoCounter />
-        <TodoFilters />
         <ClearCompletedButton />
+        <TodoFilters />
       </Footer>
     </List>
   );

@@ -8,6 +8,7 @@ export const Button = styled.button`
   color: ${(props) => props.theme.colors.background};
   border-radius: 4px;
   display: block;
+  margin-right: auto;
 
   text-align: center;
 `;

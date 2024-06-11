@@ -6,14 +6,14 @@ export default function TodoFilters() {
 
   return (
     <Filters>
-      <Button active={filter === 'all'} onClick={() => setFilter('all')}>
+      <Button $active={filter === 'all'} onClick={() => setFilter('all')}>
         All
       </Button>
-      <Button active={filter === 'active'} onClick={() => setFilter('active')}>
+      <Button $active={filter === 'active'} onClick={() => setFilter('active')}>
         Active
       </Button>
       <Button
-        active={filter === 'completed'}
+        $active={filter === 'completed'}
         onClick={() => setFilter('completed')}
       >
         Completed
