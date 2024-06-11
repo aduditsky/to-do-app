@@ -6,17 +6,21 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "prod": "npm ci && npm run build && npm run start",
     "lint": "next lint"
   },
   "dependencies": {
+    "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.3"
+    "react-icons": "^5.2.1",
+    "styled-components": "^6.1.11"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
-    "@types/react-dom": "^18"
+    "@types/react-dom": "^18",
+    "@types/styled-components": "^5.1.34",
+    "typescript": "^5"
   }
 }
